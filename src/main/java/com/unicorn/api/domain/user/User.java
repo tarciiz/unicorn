@@ -30,6 +30,8 @@ public class User implements UserDetails {
     private Long id;
     private String name;
     private String email;
+
+    @JsonIgnore
     private String password;
     private UserRole role;
 

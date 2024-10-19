@@ -2,7 +2,9 @@ package com.unicorn.api.domain.user;
 
 public enum UserRole {
     ADMIN("ADMIN"),
-    SUPERADMIN("SUPERADMIN");
+    SUPERADMIN("SUPERADMIN"),
+    UNICORNSUPERADMIN("UNICORNSUPERADMIN"),
+    UNICORNADMIN("UNICORNADMIN");
 
     private final String role;
 

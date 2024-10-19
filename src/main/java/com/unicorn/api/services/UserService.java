@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.unicorn.api.domain.user.User;
+import com.unicorn.api.infra.configs.UserFolderCreator;
 import com.unicorn.api.infra.exceptions.BusinessException;
 import com.unicorn.api.repositories.UserRepository;
 
@@ -23,7 +24,11 @@ public class UserService {
         String encryptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encryptedPassword);
 
-        return ResponseEntity.ok().body(userRepository.save(user));
+        user = userRepository.save(user);
+
+        UserFolderCreator.createUserFolder(user.getId());
+
+        return ResponseEntity.ok().body(user);
     }
 
     public ResponseEntity<?> update(User user) {
