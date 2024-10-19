@@ -28,7 +28,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     public void initializeData() {
-        if (authRepository.findByRole(UserRole.ADMIN).isEmpty()) {
+        if (authRepository.findByRole(UserRole.SUPERADMIN).isEmpty()) {
             User superAdmin = createSuperAdmin();
         }
     }
