@@ -35,8 +35,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/user/**").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/user/**").hasAnyRole("ADMIN", "SUPERADMIN")
 
-                        .requestMatchers(HttpMethod.PUT, "/api/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/auth/update").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/api/admin/hello").permitAll()
                         .anyRequest().authenticated())
