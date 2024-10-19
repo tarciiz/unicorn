@@ -30,10 +30,10 @@ public class SecurityConfig {
 
                         // Auth Controller
                         // .requestMatchers(HttpMethod.POST, "/api/user/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/user/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/user/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/user/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/user/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/user/**").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/user/**").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/user/**").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/user/**").hasAnyRole("ADMIN", "SUPERADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/api/admin/hello").permitAll()
 
