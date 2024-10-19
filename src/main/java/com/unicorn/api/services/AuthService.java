@@ -12,6 +12,7 @@ import com.unicorn.api.domain.user.LoginResponse;
 import com.unicorn.api.domain.user.RegisterRequest;
 import com.unicorn.api.domain.user.LoginRequest;
 import com.unicorn.api.domain.user.User;
+import com.unicorn.api.infra.configs.UserFolderCreator;
 import com.unicorn.api.infra.exceptions.AuthException;
 import com.unicorn.api.repositories.AuthRepository;
 import lombok.AllArgsConstructor;
@@ -47,7 +48,9 @@ public class AuthService implements UserDetailsService {
         }
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(user.password());
-        authRepository.save(new User(user.name(), user.email(), encryptedPassword, user.role()));
+        User userSaved = authRepository.save(new User(user.name(), user.email(), encryptedPassword, user.role()));
+
+        UserFolderCreator.createUserFolder(userSaved.getId());
 
         return ResponseEntity.ok().build();
     }
