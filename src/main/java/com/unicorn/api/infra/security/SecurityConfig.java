@@ -35,8 +35,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/user/**").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/user/**").hasAnyRole("ADMIN", "SUPERADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/api/admin/hello").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/api/admin/hello").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
