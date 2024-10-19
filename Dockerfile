@@ -1,5 +1,5 @@
-# Usar uma imagem base mais leve do OpenJDK 21 e Maven para o build
-FROM maven:3.9.5-eclipse-temurin-21 AS builder
+# Usar uma imagem base mais leve do OpenJDK 17 e Maven para o build
+FROM maven:3.9.5-eclipse-temurin-17 AS builder
 
 # Definir o diretório de trabalho
 WORKDIR /app
@@ -14,8 +14,8 @@ COPY src /app/src
 # Construir o projeto sem rodar os testes
 RUN mvn clean package -DskipTests
 
-# Usar uma imagem base mais leve do OpenJDK 21 para o ambiente de produção
-FROM eclipse-temurin:21-jre-alpine
+# Usar uma imagem base mais leve do OpenJDK 17 para o ambiente de produção
+FROM eclipse-temurin:17-jre-alpine
 
 # Definir o diretório de trabalho
 WORKDIR /app
